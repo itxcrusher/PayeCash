@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="mt-4">
+    <h2>Welcome back, {{ request.user.username }}!</h2>
+    <div class="row mt-4">
+        <div class="col-md-6 mt-3">
+            <div class="card text-white bg-info mb-3">
+                <div class="card-header">Account Balance</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ account.balance }}</h5>
+                    <p class="card-text">Currency: {{ account.currency }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-3">
+            <div class="card text-white bg-secondary mb-3">
+                <div class="card-header">Actions</div>
+                <div class="card-body">
+                    <a href="{% url 'payapp:send_payment' %}" class="btn btn-light mt-2">Send Payment <i class="fas fa-paper-plane"></i></a>
+                    <a href="{% url 'payapp:transaction_list' %}" class="btn btn-light mt-2">View Transactions <i class="fas fa-history"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

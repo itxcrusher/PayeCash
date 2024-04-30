@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Send Payment{% endblock %}
+
+{% block content %}
+<div class="mt-4">
+    <h2 class="mb-3">Send Payment</h2>
+    <div class="card">
+        <div class="card-body">
+            <form method="post" class="payment-form">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-primary mt-3">Send <i class="fas fa-paper-plane"></i></button>
+                <a href="{% url 'payapp:home' %}" class="btn btn-secondary mt-3">Back <i class="fas fa-arrow-left"></i></a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
