@@ -1,73 +1,109 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Favicon -->
+        {% load static %}
+        <link rel="icon" href="{% static 'payecash.jpeg' %}" type="image/x-icon">
+        <title>PayeCash</title>
+
         <!-- Head content including Bootstrap and Font Awesome links -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
         <style>
-.payment-form .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-.table-hover tbody tr:hover {
-    background-color: #f8f9fa;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    border-color: #6c757d;
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268;
-    border-color: #545b62;
-}
-
-/* Adjusts the padding and margin for better spacing */
-.card-body {
-    padding: 2rem;
-}
-
-.mt-4, .my-4, .mb-4 {
-    margin-top: 1.5rem !important;
-}
-
-
+            :root{
+                --blue: #1d418b;
+                --white: #ffffff;
+            }
+            body{
+                background-color: lightblue;
+            }
+            h1,h2,h3,h4,h5,h6{
+                text-align: center;
+            }
+            a,
+            a:hover{
+                text-decoration: none;
+                color: var(--white);
+            }
+            nav{
+                background-color: var(--blue);
+                height: 13vh;
+            }
+            #logo{
+                width: 8vw;
+                height: 3vw;
+            }
+            main{
+                margin-top: 5vh;
+            }
+            main h2{
+                margin: 5vh;
+                font-weight: bold;
+            }
+            nav,
+            nav .container,
+            nav .container div{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .payment-form .btn-primary {
+                background-color: var(--blue);
+                border-color: var(--white);
+            }
+            .table-hover tbody tr:hover {
+                background-color: var(--white);
+            }
+            .btn-light,
+            .btn-secondary,
+            .btn-secondary:hover {
+                background-color: var(--white);
+                border-color: var(--blue);
+                color: var(--blue);
+            }
+            .card{
+                background-color: var(--blue);
+                color: var(--white);
+                min-height: 30vh;
+            }
+            .card-header{
+                font-weight: bold;
+            }
+            .card-body {
+                padding: 2rem;
+            }
         </style>
     </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav>
     <div class="container">
-        <a class="navbar-brand" href="{% url 'payapp:home' %}">PaymentApp</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav ml-auto">
-                {% if user.is_authenticated %}
-                <a class="nav-link" href="{% url 'payapp:send_payment' %}">Send Payment</a>
-                <a class="nav-link" href="{% url 'payapp:transaction_list' %}">Transactions</a>
-                <form action="{% url 'logout' %}" method="post" class="form-inline">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Logout <i class="fas fa-sign-out-alt"></i></button>
-                </form>
-                {% endif %}
-            </div>
+        <a href="{% url 'payapp:home' %}">{% load static %}<img id="logo" src="{% static 'payecash.jpeg' %}" alt="payecash"></a>
+        {% if user.is_authenticated %}
+        <div>
+            <a class="nav-link" href="{% url 'payapp:send_payment' %}">Send Payment</a>
+            <a class="nav-link" href="{% url 'payapp:transaction_list' %}">Transactions</a>
         </div>
+        <form action="{% url 'logout' %}" method="post" class="form-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-light"><b>Logout</b><i class="fas fa-sign-out-alt"></i></button>
+        </form>
+        {% endif %}
     </div>
 </nav>
 
-<div class="container mt-4">
+<main class="container">
     {% block content %}{% endblock %}
-</div>
+</main>
 
 <!-- Bootstrap and jQuery scripts -->
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>
 
 

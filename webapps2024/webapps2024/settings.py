@@ -26,7 +26,13 @@ SECRET_KEY = 'django-insecure-f+&a))iqpp&in*3audydsp%+zg9!is6)0)%+0_wz$1q(aelken
 DEBUG = True
 
 ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
+#ALLOWED_HOSTS = ['3.212.26.96','ec2-3-212-26-96.compute-1.amazonaws.com']
 
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#SECURE_SSL_REDIRECT = True
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
 
 # Application definition
 
@@ -120,8 +126,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-STATIC_URL = 'static/'
-
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    "static/",
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
